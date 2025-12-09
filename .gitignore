@@ -1,0 +1,5 @@
+.venv
+ai_infra_week1/onnxruntime-linux-x64-1.18.0/*
+build/
+*.data
+*.onnx

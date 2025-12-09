@@ -73,3 +73,5 @@ typing-extensions==4.15.0
     # via
     #   onnx
     #   torch
+
+onnxscript

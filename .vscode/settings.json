@@ -1,0 +1,6 @@
+{
+    "clangd.arguments": [
+        "--log=verbose",
+        "--compile-commands-dir=build"
+    ]
+}
