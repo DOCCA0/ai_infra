@@ -1,0 +1,12 @@
+[project]
+# 项目基础信息（按需修改，必填项不可删）
+name = "ai_infra"  # 替换为你的项目名称（英文，无空格）
+version = "0.1.0"           # 项目版本（遵循语义化版本，如 0.1.0、1.0.0）
+
+# 生产依赖（对应原需求列表，无版本约束则留空，uv 会自动解析兼容版本）
+dependencies = [
+  "torch",
+  "onnx",
+  "onnxscript",
+  "huggingface-hub",
+]
