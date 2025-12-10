@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Default model name if not provided in environment
+MODEL_NAME="${MODEL_NAME:-/data/gpt2}"
+# MODE: 'chat' (default) or 'completions' to use the older completions API
+MODE="${MODE:-chat}"
+curl -sS -X POST "http://localhost:8000/v1/chat/completions" \
+		-H "Content-Type: application/json" \
+		-d @- <<JSON | python3 -m json.tool
+{
+	"model": "${MODEL_NAME}",
+	"messages": [
+		{"role": "system", "content": "You are a helpful assistant."},
+		{"role": "user", "content": "white a short poem about AI infrastructure"}
+	],
+	"max_tokens": 64,
+	"temperature": 0.7
+}
+JSON
+
+
+

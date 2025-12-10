@@ -1,0 +1,31 @@
+#!/bin/bash
+set -euo pipefail
+
+# Define variables
+MODEL_PATH="/data/gpt2"
+MODEL_NAME=$(basename "$MODEL_PATH")
+
+# Set QUANTIZATION to enable quantization and mount config to /data/quant_config.json if needed
+QUANTIZATION=""
+QUANT_ARG=""
+if [ -n "$QUANTIZATION" ]; then
+	QUANT_ARG="--quantization $QUANTIZATION"
+fi
+
+CONTAINER_NAME="vllm_openai_server"
+
+docker rm -f "$CONTAINER_NAME" >/dev/null 2>&1 || true
+
+echo "Starting vLLM OpenAI-compatible server in Docker..."
+	docker run -d --gpus all --name "$CONTAINER_NAME" -p 8000:8000 \
+	-v "$(pwd)/ai_infra_week2:/data" \
+	vllm/vllm-openai:latest "$MODEL_PATH" \
+	--host 0.0.0.0 \
+	--port 8000 \
+	--dtype float16 \
+	--gpu-memory-utilization 0.7 \
+	--chat-template /data/chat_template.jinja \
+	$QUANT_ARG
+
+
+
