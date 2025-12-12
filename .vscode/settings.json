@@ -2,5 +2,9 @@
     "clangd.arguments": [
         "--log=verbose",
         "--compile-commands-dir=build"
-    ]
+    ],
+    "cmake.configureSettings": {
+        "CMAKE_CUDA_ARCHITECTURES": "89",
+        "CMAKE_CUDA_COMPILER": "/usr/local/cuda/bin/nvcc"
+    }
 }
